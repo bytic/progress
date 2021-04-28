@@ -6,24 +6,17 @@ namespace ByTIC\Progress\Stepper;
 /**
  * Class ProgressStepper
  * @package ByTIC\Progress\ProgressStepper
+ *
+ * @method first()
+ * @method last()
  */
 class ProgressStepper
 {
     /**
-     * @var ProgressStep[]
+     * @var StepCollection
      */
-    protected $steps = [];
+    protected $steps;
     protected $current = null;
-
-    /**
-     * ProgressStepper constructor.
-     * @param $steps
-     */
-    protected function __construct(array $steps, $current)
-    {
-        $this->setSteps($steps);
-        $this->current = $current;
-    }
 
     /**
      * @param $steps
@@ -36,12 +29,39 @@ class ProgressStepper
     }
 
     /**
+     * ProgressStepper constructor.
+     * @param $steps
+     */
+    protected function __construct(array $steps, $current)
+    {
+        $this->steps = new StepCollection();
+        $this->setSteps($steps);
+        $this->current = $current;
+    }
+
+    /**
+     * @param $name
+     * @param $arguments
+     * @return false|mixed
+     * @throws \Exception
+     */
+    public function __call($name, $arguments)
+    {
+        $collection_methods = ['first', 'last'];
+        if (in_array($name, $collection_methods)) {
+            return call_user_func_array([$this->steps, $name], $arguments);
+        }
+        throw new \Exception("Invalid method call $name for " . self::class);
+    }
+
+
+    /**
      * @param array $steps
      * @return $this
      */
     public function setSteps($steps = [])
     {
-        $this->steps = [];
+        $this->steps->clear();
         foreach ($steps as $step) {
             $this->addStep($step);
         }
@@ -52,7 +72,7 @@ class ProgressStepper
     /**
      * @param ProgressStep $step
      */
-    public function addStep(ProgressStep $step)
+    public function addStep(ProgressStep $step): ProgressStepper
     {
         $this->steps[$step->getName()] = $step;
 
@@ -60,9 +80,9 @@ class ProgressStepper
     }
 
     /**
-     * @return array
+     * @return StepCollection
      */
-    public function getSteps(): array
+    public function getSteps(): StepCollection
     {
         return $this->steps;
     }

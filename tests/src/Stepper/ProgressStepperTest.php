@@ -36,9 +36,20 @@ class ProgressStepperTest extends AbstractTest
         self::assertSame('step1', $stepper->getCurrent());
 
         $stepper->setCurrent(null);
-        self::assertNull( $stepper->getCurrent());
+        self::assertNull($stepper->getCurrent());
 
         self::expectException(\InvalidArgumentException::class);
         $stepper->setCurrent('dnx');
+    }
+
+    public function test_first_last()
+    {
+        $step1 = ProgressStep::build('step1', 'Step 1');
+        $step2 = ProgressStep::build('step2', 'Step 2');
+        $stepper = ProgressStepper::build()
+            ->addStep($step1)
+            ->addStep($step2);
+        self::assertSame($step1, $stepper->first());
+        self::assertSame($step2, $stepper->last());
     }
 }
