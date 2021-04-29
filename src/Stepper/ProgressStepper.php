@@ -3,6 +3,8 @@
 namespace ByTIC\Progress\Stepper;
 
 
+use ByTIC\Progress\Stepper\Renderer\DefaultRenderer;
+
 /**
  * Class ProgressStepper
  * @package ByTIC\Progress\ProgressStepper
@@ -13,7 +15,7 @@ namespace ByTIC\Progress\Stepper;
 class ProgressStepper
 {
     /**
-     * @var StepCollection
+     * @var StepCollection|ProgressStep[]
      */
     protected $steps;
     protected $current = null;
@@ -96,6 +98,26 @@ class ProgressStepper
     }
 
     /**
+     * @return mixed
+     */
+    public function getCurrentStep()
+    {
+        return $this->steps[$this->current];
+    }
+
+    /**
+     * @return StepCollection
+     */
+    public function getDoneSteps(): StepCollection
+    {
+        return $this->steps->filter(
+            function (ProgressStep $item) {
+                return $item->isDone();
+            }
+        );
+    }
+
+    /**
      * @param string|ProgressStep $current
      */
     public function setCurrent($current): ProgressStepper
@@ -121,14 +143,25 @@ class ProgressStepper
         return $this->render();
     }
 
+    /**
+     * @return string
+     */
+    public function render()
+    {
+        return (new DefaultRenderer($this))->render();
+    }
+
     protected function setCurrentStepFlags()
     {
-        $active = true;
+        $done = true;
         foreach ($this->steps as $step) {
             if ($step->getName() == $this->current) {
-                $active = false;
+                $done = false;
+                $step->setActive(true);
+            } else {
+                $step->setActive(false);
             }
-            $step->setActive(true);
+            $step->setDone($done);
         }
     }
 

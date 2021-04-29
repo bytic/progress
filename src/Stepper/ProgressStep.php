@@ -9,6 +9,7 @@ namespace ByTIC\Progress\Stepper;
 class ProgressStep
 {
     protected $name = '';
+    protected $done = false;
     protected $active = false;
     protected $label = null;
     protected $icon = null;
@@ -51,6 +52,22 @@ class ProgressStep
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDone(): bool
+    {
+        return $this->done;
+    }
+
+    /**
+     * @param bool $done
+     */
+    public function setDone(bool $done): void
+    {
+        $this->done = $done;
     }
 
     /**

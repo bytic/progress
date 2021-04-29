@@ -1,7 +1,9 @@
 .idea/workspace.xml
 
+node_modules/
 tests/_output/*
 vendor/*
 
 .phpunit.result.cache
 composer.lock
+yarn.lock

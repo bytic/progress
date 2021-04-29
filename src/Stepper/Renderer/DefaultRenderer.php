@@ -54,7 +54,14 @@ class DefaultRenderer
 
     protected function renderStepClasses(ProgressStep $step): string
     {
-        return '';
+        $classes = [];
+        if ($step->isDone()) {
+            $classes[] = 'done';
+        }
+        if ($step->isActive()) {
+            $classes[] = 'active';
+        }
+        return implode(' ', $classes);
     }
 
     /**
@@ -63,7 +70,13 @@ class DefaultRenderer
      */
     protected function renderStepIcon(ProgressStep $step): string
     {
-        return '<span class="icon"><i class="' . $step->getIcon() . '"></i></span>';
+        $icon = (string) $step->getIcon();
+        if (empty($step)) {
+            return '';
+        }
+        $iconHtml = str_contains($icon, '>') ? $icon : '<i class="' . $icon . '"></i>';
+
+        return '<span class="icon">' . $iconHtml . '</span>';
     }
 
     /**

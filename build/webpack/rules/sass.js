@@ -23,8 +23,6 @@ module.exports = {
                 options: {
                     sourceMap: true,
                     'includePaths': [
-                        path.resolve(__dirname, '../../node_modules/bootstrap-sass/assets/stylesheets/'),
-                        path.resolve(__dirname, '../../node_modules/mdbootstrap/sass/')
                     ]
                 }
             }

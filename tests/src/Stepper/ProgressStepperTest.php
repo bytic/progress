@@ -34,6 +34,7 @@ class ProgressStepperTest extends AbstractTest
 
         $stepper->setCurrent($step);
         self::assertSame('step1', $stepper->getCurrent());
+        self::assertSame($step, $stepper->getCurrentStep());
 
         $stepper->setCurrent(null);
         self::assertNull($stepper->getCurrent());
@@ -51,5 +52,17 @@ class ProgressStepperTest extends AbstractTest
             ->addStep($step2);
         self::assertSame($step1, $stepper->first());
         self::assertSame($step2, $stepper->last());
+    }
+
+    public function test_getActiveSteps()
+    {
+        $stepper = ProgressStepper::build()
+            ->addStep(ProgressStep::build('step1', 'Step 1'))
+            ->addStep(ProgressStep::build('step2', 'Step 2'))
+            ->addStep(ProgressStep::build('step3', 'Step 3'))
+            ->setCurrent('step2');
+
+        self::assertCount(3, $stepper->getSteps());
+        self::assertCount(1, $stepper->getDoneSteps());
     }
 }

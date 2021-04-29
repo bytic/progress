@@ -7,14 +7,6 @@ const config = {};
 
 module.exports = merge({
     assets: {
-        "frontend": [
-            "./resources/assets/scripts/frontend.js",
-            "./resources/assets/sass/frontend.scss"
-        ],
-        "admin/bundle": [
-            "./vendor/bytic/admin-base/src/themes/bootstrap4/assets/scripts/admin.js",
-            "./vendor/bytic/admin-base/src/themes/bootstrap4/assets/sass/admin.scss"
-        ]
     },
 
     /**
@@ -24,7 +16,7 @@ module.exports = merge({
      */
     paths: {
         root: path.resolve(__dirname, "../../"),
-        public: path.resolve(__dirname, "../../dist"),
+        public: path.resolve(__dirname, "../../dist/assets"),
         sass: path.resolve(__dirname, "../../sass"),
         fonts: path.resolve(__dirname, "../../fonts"),
         images: path.resolve(__dirname, "../../images"),
@@ -40,7 +32,7 @@ module.exports = merge({
      * @type {Object}
      */
     outputs: {
-        publicPath: "/dist/assets",
+        publicPath: "/dist/assets/",
         css: {filename: "css/[name].css"},
         font: {filename: "fonts/[name].[ext]"},
         image: {filename: "images/[name].[ext]"},
