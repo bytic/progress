@@ -76,6 +76,7 @@ class ProgressStepper
      */
     public function addStep(ProgressStep $step): ProgressStepper
     {
+        $step->setPosition(count($this->steps) + 1);
         $this->steps[$step->getName()] = $step;
 
         return $this;

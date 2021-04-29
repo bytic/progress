@@ -1,4 +1,5 @@
 $progress_stepper_color_light: #f3f3f3 !default;
+$progress_stepper_color_active: #2aaa61 !default;
 
 $progress_stepper_font_size: 1rem !default;
 $progress_stepper_line_width: 5px !default;
@@ -7,10 +8,10 @@ $progress_stepper_line_color: $progress_stepper_color_light !default;
 $progress_stepper_item_color: darken($progress_stepper_color_light, 10) !default;
 $progress_stepper_item_icon_color: darken($progress_stepper_color_light, 10)  !default;
 
-$progress_stepper_done_color: #2aaa61 !default;
-$progress_stepper_done_icon_background: #69ffa8 !default;
-$progress_stepper_done_line_color: #69ffa8 !default;
+$progress_stepper_done_color: lighten($progress_stepper_color_active, 30) !default;
+$progress_stepper_done_icon_background: lighten($progress_stepper_color_active, 30) !default;
+$progress_stepper_done_line_color: lighten($progress_stepper_color_active, 30) !default;
 
-$progress_stepper_active_color: #03a34c !default;
+$progress_stepper_active_color: $progress_stepper_color_active !default;
 $progress_stepper_active_label_color: null !default;
-$progress_stepper_active_icon_background: #2aaa61 !default;
+$progress_stepper_active_icon_background: $progress_stepper_color_active !default;

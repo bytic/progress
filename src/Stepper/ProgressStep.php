@@ -8,6 +8,7 @@ namespace ByTIC\Progress\Stepper;
  */
 class ProgressStep
 {
+    protected $position = 1;
     protected $name = '';
     protected $done = false;
     protected $active = false;
@@ -116,6 +117,22 @@ class ProgressStep
     public function setIcon(string $icon)
     {
         $this->icon = $icon;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $position
+     */
+    public function setPosition(int $position): void
+    {
+        $this->position = $position;
     }
 
     /**

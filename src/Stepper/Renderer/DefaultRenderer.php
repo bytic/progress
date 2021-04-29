@@ -48,6 +48,7 @@ class DefaultRenderer
     {
         return '<li class="step ' . $this->renderStepClasses($step) . '">'
             . $this->renderStepIcon($step)
+            . $this->renderStepPosition($step)
             . $this->renderStepLabel($step)
             . '</li>';
     }
@@ -86,5 +87,10 @@ class DefaultRenderer
     protected function renderStepLabel(ProgressStep $step): string
     {
         return '<span class="label">'. $step->getLabel() . '</span>';
+    }
+
+    protected function renderStepPosition(ProgressStep $step)
+    {
+        return '<span class="count">#'. $step->getPosition() . '</span>';
     }
 }
