@@ -69,7 +69,9 @@
     background: #8be2b0; }
   .progress-stepper .done .icon {
     background-color: #8be2b0;
-    border: 0; }
+    border: 0;
+    width: 35px;
+    height: 35px; }
     .progress-stepper .done .icon * {
       display: none; }
     .progress-stepper .done .icon:after {
@@ -95,7 +97,10 @@
   .progress-stepper .active .icon {
     color: #fff;
     background-color: #2aaa61;
-    border: 0; }
+    border: 0;
+    width: 45px;
+    height: 45px;
+    font-size: 130%; }
     .progress-stepper .active .icon:after {
       position: absolute;
       top: -25%;
