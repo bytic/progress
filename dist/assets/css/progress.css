@@ -16,26 +16,28 @@
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    color: #ccc;
+    color: #dadada;
     list-style-type: none;
     text-transform: uppercase;
     text-align: center;
     font-size: 1rem;
     letter-spacing: 1px; }
-    .progress-stepper li::after {
+    .progress-stepper li::after, .progress-stepper li:before {
       content: '';
-      width: 100%;
+      width: 50%;
       height: 5px;
-      background: #ccc;
+      background: #f3f3f3;
       position: absolute;
-      left: 0;
       top: 21px;
       z-index: -1; }
-    .progress-stepper li:first-child::after {
-      left: 50%; }
+    .progress-stepper li:before {
+      left: 0; }
+    .progress-stepper li::after {
+      right: 0; }
+    .progress-stepper li:first-child::before {
+      display: none; }
     .progress-stepper li:last-child::after {
-      position: absolute;
-      left: -50%; }
+      display: none; }
     .progress-stepper li .icon {
       width: 40px;
       height: 40px;
@@ -45,8 +47,8 @@
       margin: 0 auto 10px auto;
       padding: 0;
       background-color: #fff;
-      border: 2px solid #ccc;
-      color: #ccc;
+      border: 2px solid #dadada;
+      color: #dadada;
       position: relative; }
       .progress-stepper li .icon > * {
         position: absolute;
@@ -56,7 +58,7 @@
 
 .progress-stepper .done {
   color: #2aaa61; }
-  .progress-stepper .done::after {
+  .progress-stepper .done::before, .progress-stepper .done::after {
     background: #69ffa8; }
   .progress-stepper .done .icon {
     background-color: #69ffa8;
@@ -81,7 +83,7 @@
 
 .progress-stepper .active {
   color: #03a34c; }
-  .progress-stepper .active::after {
+  .progress-stepper .active::before {
     background: #69ffa8; }
   .progress-stepper .active .icon {
     color: #fff;
