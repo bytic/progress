@@ -36,7 +36,7 @@
         &::after {
             content: '';
             width: 100%;
-            height: 2px;
+            height: $progress_stepper_line_width;
             background: $progress_stepper_line_color;
             position: absolute;
             left: 0;
@@ -56,15 +56,26 @@
         .icon {
             width: 40px;
             height: 40px;
-            line-height: 45px;
             display: block;
-            font-size: 20px;
+            //line-height: 45px;
+            //font-size: 20px;
             text-align: center;
             border-radius: 50%;
             margin: 0 auto 10px auto;
             padding: 0;
-            background-color: $progress_stepper_item_icon_color;
-            color: #fff;
+            background-color: #fff;
+            border: 2px solid $progress_stepper_item_icon_color;
+            color: $progress_stepper_item_icon_color;
+
+            position: relative;
+
+            > * {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+
+                transform: translate(-50%,-50%);
+            }
         }
     }
 }
@@ -76,6 +87,28 @@
     }
     .icon {
         background-color: $progress_stepper_done_icon_background;
+        border: 0;
+
+        * {
+            display: none;
+        }
+
+        &:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            content: "";
+            display: inline-block;
+            width: 0.5em;
+            height: 1em;
+            border: solid white;
+            border-top: 10px;
+            border-left: 10px;
+            -webkit-transform: translate(-50%,-50%) rotate(45deg); // tilts the shape
+            -moz-transform: translate(-50%,-50%) rotate(45deg);
+            -o-transform: translate(-50%,-50%) rotate(45deg);
+            transform: translate(-50%,-50%) rotate(45deg);
+        }
     }
 }
 
@@ -86,7 +119,10 @@
         background: $progress_stepper_done_line_color;
     }
     .icon {
+        color: #fff;
         background-color: $progress_stepper_active_icon_background;
+
+        border: 0;
     }
     .label {
         color: $progress_stepper_active_label_color;
