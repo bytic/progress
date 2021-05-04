@@ -27,5 +27,9 @@ include '../vendor/autoload.php';
 <hr/>
 
 <?php include('_progress_stepper.php'); ?>
+
+<hr/>
+
+<?php include('spinners/index.php'); ?>
 </body>
 </html>

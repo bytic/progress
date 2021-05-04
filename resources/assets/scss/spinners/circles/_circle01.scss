@@ -1,0 +1,51 @@
+@function circle-position($size, $border-size, $coordinate) {
+  $center: ($size / 2) - $border-size - ($border-size / 2);
+  $half-size-border: ($size / 2) - $border-size + ($border-size / 2);
+  // root value sqrt(2)/2 = 0.70710678118
+  $root: 0.70710678118;
+  @if $coordinate == y {
+    @return round($center - ($half-size-border * $root));
+  } @else {
+    @return round($center + ($half-size-border * $root));
+  }
+}
+
+@mixin progress-spinners-circle01(
+  $size: $progress-spinners-size,
+  $color: $progress-spinners-color,
+  $border-size: $progress-spinners-border-size,
+  $duration: $progress-spinners-animation-duration,
+  $align: null
+) {
+  width: $size;
+  height: $size;
+  border: $border-size solid $color;
+  border-right-color: transparent;
+  border-radius: 50%;
+  position: relative;
+  animation: loader-rotate $duration linear infinite;
+  @if ($align == center) {
+    margin: 0 auto;
+  }
+  @if ($align == middle) {
+    top: 50%;
+    margin: -$size / 2 auto 0;
+  }
+
+  &::after {
+    content: '';
+    width: $border-size;
+    height: $border-size;
+    background: $color;
+    border-radius: 50%;
+    position: absolute;
+    top: circle-position($size, $border-size, y);
+    left: circle-position($size, $border-size, x);
+  }
+
+  @include loader-rotate;
+}
+
+.progress-spinners-circle01 {
+  @include progress-spinners-circle01($align: middle);
+}

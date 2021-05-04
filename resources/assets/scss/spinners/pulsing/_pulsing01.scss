@@ -1,0 +1,26 @@
+@mixin progress-spinners-pulsing01(
+  $size: $progress-spinners-size,
+  $color: $progress-spinners-color,
+  $border-size: $progress-spinners-border-size,
+  $duration: $progress-spinners-animation-duration,
+  $align: null
+) {
+  width: $size;
+  height: $size;
+  border: $border-size solid $color;
+  border-radius: 50%;
+  position: relative;
+  animation: loader-scale $duration ease-out infinite;
+  @if ($align == center) {
+    margin: 0 auto;
+  }
+  @if ($align == middle) {
+    top: 50%;
+    margin: -$size / 2 auto 0;
+  }
+  @include loader-scale;
+}
+
+.progress-spinners-pulsing01 {
+  @include progress-spinners-pulsing01($align: middle);
+}

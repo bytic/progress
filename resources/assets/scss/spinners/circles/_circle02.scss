@@ -1,0 +1,27 @@
+@mixin progress-spinners-circle02(
+  $size: $progress-spinners-size,
+  $color: $progress-spinners-color,
+  $border-size: $progress-spinners-border-size,
+  $duration: $progress-spinners-animation-duration,
+  $align: null
+) {
+  width: $size;
+  height: $size;
+  border: $border-size solid rgba($color, 0.25);
+  border-top-color: $color;
+  border-radius: 50%;
+  position: relative;
+  animation: loader-rotate $duration linear infinite;
+  @if ($align == center) {
+    margin: 0 auto;
+  }
+  @if ($align == middle) {
+    top: 50%;
+    margin: -$size / 2 auto 0;
+  }
+  @include loader-rotate;
+}
+
+.progress-spinners-circle02 {
+  @include progress-spinners-circle02($align: middle);
+}
