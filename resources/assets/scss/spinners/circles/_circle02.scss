@@ -10,7 +10,6 @@
   border: $border-size solid rgba($color, 0.25);
   border-top-color: $color;
   border-radius: 50%;
-  position: relative;
   animation: loader-rotate $duration linear infinite;
   @if ($align == center) {
     margin: 0 auto;

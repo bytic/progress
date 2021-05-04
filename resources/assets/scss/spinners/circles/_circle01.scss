@@ -22,8 +22,8 @@
   border: $border-size solid $color;
   border-right-color: transparent;
   border-radius: 50%;
-  position: relative;
   animation: loader-rotate $duration linear infinite;
+
   @if ($align == center) {
     margin: 0 auto;
   }

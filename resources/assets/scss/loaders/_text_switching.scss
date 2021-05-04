@@ -1,0 +1,120 @@
+.progress-loaders-text {
+  background-color: $progress-loaders-text-background;
+  color: $progress-loaders-text-color;
+  height: $progress-loaders-text-font-size;
+  font-size: $progress-loaders-text-font-size;
+  line-height: $progress-loaders-text-font-size;
+}
+
+$progress-loaders-text-div-height: $progress-loaders-text-font-size*1.2;
+
+.animate-down-once {
+  div {
+    // overlap the divs
+    height: $progress-loaders-text-div-height;
+    margin-bottom: -$progress-loaders-text-div-height;
+
+    opacity: 0; // start hidden
+    text-align: center;
+
+    animation: progress-loaders-text-slideDownThrough $progress-loaders-text-animation-length linear $progress-loaders-text-animation-delay 1;
+  }
+
+  div:last-child {
+    animation-name: progress-loaders-text-slideDownIn;
+    animation-fill-mode: forwards; // run once and stop on last frame
+  }
+
+  &.count-1 {
+  }
+  &.count-2 {
+    div:last-child {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 1));
+    }
+  }
+  &.count-3 {
+    div:nth-child(2) {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 1));
+    }
+    div:last-child {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 2));
+    }
+  }
+  &.count-4 {
+    div:nth-child(2) {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 1));
+    }
+    div:nth-child(3) {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 2));
+    }
+    div:last-child {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 3));
+    }
+  }
+  &.count-5 {
+    div:nth-child(2) {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 1));
+    }
+    div:nth-child(3) {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 2));
+    }
+    div:nth-child(4) {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 3));
+    }
+    div:last-child {
+      animation-delay: ($progress-loaders-text-animation-delay + ($progress-loaders-text-animation-length * 4));
+    }
+  }
+
+
+
+}
+
+@keyframes progress-loaders-text-slideDownThrough {
+  // slide text down and appear, then slide down and disappear
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 0;
+    transform: translateY(-$progress-loaders-text-font-size);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  17% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  90% {
+    opacity: 0;
+    transform: translateY($progress-loaders-text-font-size);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes progress-loaders-text-slideDownIn {
+  // slide text down and appear, freeze on last frame to keep it visible
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 0;
+    transform: translateY(-$progress-loaders-text-font-size);
+  }
+  17% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

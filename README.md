@@ -19,3 +19,4 @@ Html & CSS
 
 Css Spinners
 * https://matejkustec.github.io/SpinThatShit/
+* https://codepen.io/jenning/pen/YzNmzaV

@@ -2,7 +2,8 @@
 @import 'animations';
 
 .progress-spinner {
-  text-indent: -99999em;
+  position: relative;
+  color: transparent; // hides the text
 }
 
 @import 'circles/circle01';

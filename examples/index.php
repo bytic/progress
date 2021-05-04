@@ -31,5 +31,8 @@ include '../vendor/autoload.php';
 <hr/>
 
 <?php include('spinners/index.php'); ?>
+<hr/>
+
+<?php include('loaders/index.php'); ?>
 </body>
 </html>
