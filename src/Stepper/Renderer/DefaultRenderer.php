@@ -47,8 +47,10 @@ class DefaultRenderer
     protected function renderStep(ProgressStep $step): string
     {
         return '<div class="step ' . $this->renderStepClasses($step) . '">'
+            . '<div class="figure">'
             . $this->renderStepIcon($step)
             . $this->renderStepPosition($step)
+            . '</div>'
             . $this->renderStepLabel($step)
             . '</div>';
     }
@@ -62,6 +64,9 @@ class DefaultRenderer
         if ($step->isActive()) {
             $classes[] = 'active';
         }
+        if ($step->hasIcon()) {
+            $classes[] = 'has-icon';
+        }
         return implode(' ', $classes);
     }
 
@@ -71,11 +76,12 @@ class DefaultRenderer
      */
     protected function renderStepIcon(ProgressStep $step): string
     {
-        $icon = (string) $step->getIcon();
-        if (empty($step)) {
-            return '';
+        if ($step->hasIcon()) {
+            $icon = (string)$step->getIcon();
+            $iconHtml = str_contains($icon, '>') ? $icon : '<i class="' . $icon . '"></i>';
+        } else {
+            $iconHtml = '';
         }
-        $iconHtml = str_contains($icon, '>') ? $icon : '<i class="' . $icon . '"></i>';
 
         return '<span class="icon">' . $iconHtml . '</span>';
     }
@@ -86,11 +92,11 @@ class DefaultRenderer
      */
     protected function renderStepLabel(ProgressStep $step): string
     {
-        return '<span class="label">'. $step->getLabel() . '</span>';
+        return '<span class="label">' . $step->getLabel() . '</span>';
     }
 
     protected function renderStepPosition(ProgressStep $step)
     {
-        return '<span class="count">#'. $step->getPosition() . '</span>';
+        return '<span class="count">' . $step->getPosition() . '</span>';
     }
 }

@@ -19,9 +19,9 @@ $stepper = ProgressStepper::build()
     <?php
     $stepper = ProgressStepper::build()
         ->addStep(ProgressStep::build('step1', 'Step 1','<i class="fas fa-cart-arrow-down"></i>'))
-        ->addStep(ProgressStep::build('step2', 'Step 2','<i class="fas fa-cart-arrow-down"></i>'))
+        ->addStep(ProgressStep::build('step2', 'Step 2',''))
         ->addStep(ProgressStep::build('step3', 'Step 3','<i class="fas fa-cart-arrow-down"></i>'))
-        ->addStep(ProgressStep::build('step4', 'Step 4','<i class="fas fa-cart-arrow-down"></i>'))
+        ->addStep(ProgressStep::build('step4', 'Step 4',''))
     ;
     echo $stepper;
     echo $stepper->setCurrent('step1');

@@ -119,6 +119,11 @@ class ProgressStep
         $this->icon = $icon;
     }
 
+    public function hasIcon(): bool
+    {
+        return !empty($this->icon);
+    }
+
     /**
      * @return int
      */

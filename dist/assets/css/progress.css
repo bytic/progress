@@ -1,6 +1,5 @@
 .progress-stepper {
-  margin-bottom: 30px;
-  padding: 12px 0;
+  padding: 1rem 0;
   overflow: hidden;
   display: flex;
   /*CSS counters to number the steps*/
@@ -15,18 +14,29 @@
   font-size: 1rem;
   letter-spacing: 1px; }
 
-.progress-stepper .step .icon {
+.progress-stepper .step .figure {
+  position: relative;
   width: 1.5rem;
   height: 1.5rem;
   display: block;
-  text-align: center;
-  border-radius: 50%;
   margin: 0 auto;
-  padding: 0;
+  border-radius: 50%;
   background-color: #fff;
+  padding: 0;
   border: 1px solid #dadada;
-  color: #dadada;
-  position: relative; }
+  z-index: 1; }
+
+.progress-stepper .step .icon,
+.progress-stepper .step .count {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center; }
+
+.progress-stepper .step .icon {
+  color: #dadada; }
   .progress-stepper .step .icon > * {
     position: absolute;
     top: 50%;
@@ -34,54 +44,64 @@
     transform: translate(-50%, -50%); }
 
 .progress-stepper .step .count {
-  display: none;
-  font-size: 75%;
-  font-weight: bold; }
+  line-height: 2em;
+  display: inline-block;
+  font-weight: bold;
+  z-index: 3; }
+
+.progress-stepper .step.done .count,
+.progress-stepper .step.has-icon .count {
+  display: none; }
+
+.progress-stepper .step .label {
+  z-index: 3; }
 
 .progress-stepper .done {
   color: #8be2b0; }
-  .progress-stepper .done .icon {
+  .progress-stepper .done .figure {
     background-color: #8be2b0;
     border: 0; }
-    .progress-stepper .done .icon * {
-      display: none; }
-    .progress-stepper .done .icon:after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      content: "";
-      display: inline-block;
-      width: 0.5em;
-      height: 0.8em;
-      border: solid white;
-      border-top: 10px;
-      border-left: 10px;
-      -webkit-transform: translate(-50%, -50%) rotate(45deg);
-      -moz-transform: translate(-50%, -50%) rotate(45deg);
-      -o-transform: translate(-50%, -50%) rotate(45deg);
-      transform: translate(-50%, -50%) rotate(45deg); }
+  .progress-stepper .done .icon * {
+    display: none; }
+  .progress-stepper .done .icon:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 0.8em;
+    border: solid white;
+    border-top: 10px;
+    border-left: 10px;
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    -moz-transform: translate(-50%, -50%) rotate(45deg);
+    -o-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg); }
 
 .progress-stepper .active {
   color: #2aaa61; }
-  .progress-stepper .active .icon {
-    color: #fff;
+  .progress-stepper .active .figure {
     background-color: #2aaa61;
     border: 0; }
-    .progress-stepper .active .icon:after {
-      position: absolute;
-      top: 51%;
-      left: -17%;
-      content: "";
-      display: inline-block;
-      width: 0.6em;
-      height: 0.6em;
-      border: solid #8be2b0;
-      border-top: 10px;
-      border-left: 10px;
-      -webkit-transform: translate(-50%, -50%) rotate(315deg);
-      -moz-transform: translate(-50%, -50%) rotate(315deg);
-      -o-transform: translate(-50%, -50%) rotate(315deg);
-      transform: translate(-50%, -50%) rotate(315deg); }
+  .progress-stepper .active .icon,
+  .progress-stepper .active .count {
+    color: #fff; }
+  .progress-stepper .active .icon:after {
+    position: absolute;
+    top: 51%;
+    left: -17%;
+    content: "";
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    border: solid #8be2b0;
+    border-top: 10px;
+    border-left: 10px;
+    -webkit-transform: translate(-50%, -50%) rotate(315deg);
+    -moz-transform: translate(-50%, -50%) rotate(315deg);
+    -o-transform: translate(-50%, -50%) rotate(315deg);
+    transform: translate(-50%, -50%) rotate(315deg); }
   .progress-stepper .active .label {
     font-weight: bold; }
 
@@ -100,8 +120,8 @@
       height: 5px;
       background: #f3f3f3;
       position: absolute;
-      top: 21px;
-      z-index: -1; }
+      top: 1rem;
+      transform: translate(0, -2.5px); }
     .progress-stepper .step:before {
       left: 0; }
     .progress-stepper .step::after {
@@ -110,19 +130,17 @@
       display: none; }
     .progress-stepper .step:last-child::after {
       display: none; }
+  .progress-stepper .step .figure {
+    margin: 0 auto; }
   .progress-stepper .step.done::before, .progress-stepper .step.done::after {
     background: #8be2b0; }
   .progress-stepper .step.active::before {
     background: #8be2b0; }
-  .progress-stepper .step .icon {
+  .progress-stepper .step .figure {
     width: 2rem;
     height: 2rem; }
-  .progress-stepper .step .count {
-    display: block; }
-  .progress-stepper .step.active .icon {
-    width: 3rem;
-    height: 3rem;
-    font-size: 130%; } }
+  .progress-stepper .step .icon {
+    z-index: 1; } }
 
 @media (max-width: 599px) {
   .progress-stepper {
@@ -132,15 +150,12 @@
     font-size: 0.8rem;
     padding: 4px 0;
     border-bottom: 1px solid #dadada; }
-    .progress-stepper .step .icon {
-      float: left;
-      margin-right: 10px; }
+    .progress-stepper .step .figure {
+      float: left; }
     .progress-stepper .step .label {
+      margin-left: 0.8rem;
       text-align: left;
       float: left; }
-  .progress-stepper .step.done .icon {
-    width: 0.8rem;
-    height: 0.8rem; }
   .progress-stepper .step.done .label {
     font-size: 0.8rem; } }
 
