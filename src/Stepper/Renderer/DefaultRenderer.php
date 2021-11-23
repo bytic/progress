@@ -27,7 +27,7 @@ class DefaultRenderer
 
     public function render(): string
     {
-        $return = '<ul class="progress-stepper">' . $this->renderSteps($this->stepper->getSteps()) . '</ul>';
+        $return = '<div class="progress-stepper">' . $this->renderSteps($this->stepper->getSteps()) . '</div>';
         return $return;
     }
 
@@ -46,11 +46,11 @@ class DefaultRenderer
 
     protected function renderStep(ProgressStep $step): string
     {
-        return '<li class="step ' . $this->renderStepClasses($step) . '">'
+        return '<div class="step ' . $this->renderStepClasses($step) . '">'
             . $this->renderStepIcon($step)
             . $this->renderStepPosition($step)
             . $this->renderStepLabel($step)
-            . '</li>';
+            . '</div>';
     }
 
     protected function renderStepClasses(ProgressStep $step): string

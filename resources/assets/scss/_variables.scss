@@ -2,6 +2,8 @@ $progress_stepper_color_light: #f3f3f3 !default;
 $progress_stepper_color_active: #2aaa61 !default;
 
 $progress_stepper_font_size: 1rem !default;
+$progress_stepper_font_size_mobile: $progress_stepper_font_size * 0.8 !default;
+
 $progress_stepper_line_width: 5px !default;
 $progress_stepper_line_color: $progress_stepper_color_light !default;
 

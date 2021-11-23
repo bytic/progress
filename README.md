@@ -16,6 +16,7 @@ Html & CSS
 * http://kodhus.com/newsite/step-progress-bar-css-only/
 * https://codepen.io/lookininward/pen/LYpxPPo
 * https://github.com/bekamais/angular-custom-stepper
+* https://opencollective.com/phpfoundation/contribute/sponsors-34207/checkout
 
 Css Spinners
 * https://matejkustec.github.io/SpinThatShit/
