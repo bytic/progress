@@ -25,27 +25,16 @@
     }
   },
   "require": {
-    "php": "^7.1|^8.0",
+    "php": "^7.4|^8.0",
     "bytic/collections": "^0.9|^1.0",
-    "bytic/utility": "^0.9|^1.0"
+    "bytic/utility": "^1.0",
+    "bytic/assert": "^0.1",
+    "bytic/package-base": "^1.0"
   },
   "require-dev": {
     "bytic/phpqatools": "^1.0",
-    "mockery/mockery": "^1.0"
+    "bytic/migrations": "^0.12"
   },
-  "scripts": {
-    "tests": [
-      "@analyse",
-      "@test"
-    ],
-    "test": [
-      "phpunit"
-    ],
-    "analyse": [
-      "@stan",
-      "@psalm"
-    ],
-    "stan": "phpstan analyse",
-    "psalm": "psalm --output-format=compact --find-dead-code --find-unused-psalm-suppress --long-progress "
-  }
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
