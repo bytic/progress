@@ -2,8 +2,9 @@
 
 namespace ByTIC\Progress\Stepper;
 
-
 use ByTIC\Progress\Stepper\Renderer\DefaultRenderer;
+use ByTIC\Progress\Stepper\Steps\ProgressStep;
+use ByTIC\Progress\Stepper\Steps\StepCollection;
 
 /**
  * Class ProgressStepper

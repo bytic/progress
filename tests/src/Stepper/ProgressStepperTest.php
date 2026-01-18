@@ -2,8 +2,8 @@
 
 namespace ByTIC\Progress\Tests\Stepper;
 
-use ByTIC\Progress\Stepper\ProgressStep;
 use ByTIC\Progress\Stepper\ProgressStepper;
+use ByTIC\Progress\Stepper\Steps\ProgressStep;
 use ByTIC\Progress\Tests\AbstractTest;
 
 /**

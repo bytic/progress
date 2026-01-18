@@ -1,7 +1,7 @@
 <?php
 
-use ByTIC\Progress\Stepper\ProgressStep;
 use ByTIC\Progress\Stepper\ProgressStepper;
+use ByTIC\Progress\Stepper\Steps\ProgressStep;
 
 ?>
 <div class="container">

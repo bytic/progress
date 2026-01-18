@@ -2,9 +2,9 @@
 
 namespace ByTIC\Progress\Tests\Stepper\Renderer;
 
-use ByTIC\Progress\Stepper\ProgressStep;
 use ByTIC\Progress\Stepper\ProgressStepper;
 use ByTIC\Progress\Stepper\Renderer\DefaultRenderer;
+use ByTIC\Progress\Stepper\Steps\ProgressStep;
 use ByTIC\Progress\Tests\AbstractTest;
 
 /**
@@ -22,7 +22,7 @@ class DefaultRendererTest extends AbstractTest
         $renderer = new DefaultRenderer($stepper);
 
         self::assertEquals(
-            file_get_contents(TEST_FIXTURE_PATH . '/stepper/renderer/basic.html'),
+            file_get_contents(TEST_FIXTURE_PATH . '/html/stepper/renderer/basic.html'),
             $renderer->render()
         );
     }

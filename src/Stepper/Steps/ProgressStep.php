@@ -1,6 +1,8 @@
 <?php
 
-namespace ByTIC\Progress\Stepper;
+declare(strict_types=1);
+
+namespace ByTIC\Progress\Stepper\Steps;
 
 /**
  * Class ProgressStep
@@ -66,9 +68,10 @@ class ProgressStep
     /**
      * @param bool $done
      */
-    public function setDone(bool $done): void
+    public function setDone(bool $done): self
     {
         $this->done = $done;
+        return $this;
     }
 
     /**
