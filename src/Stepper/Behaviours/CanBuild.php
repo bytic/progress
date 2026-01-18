@@ -4,25 +4,33 @@ declare(strict_types=1);
 
 namespace ByTIC\Progress\Stepper\Behaviours;
 
+use ByTIC\Progress\Stepper\Steps\StepCollection;
+
 /**
  *
  */
 trait CanBuild
 {
+    protected $built = false;
+
     /**
-     * @param $steps
-     * @param null $current
-     * @return static
+     * @return StepCollection
      */
-    public static function build($steps = [], $current = null)
+    public function getSteps(): StepCollection
     {
-        $self = new static($steps, $current);
-        $self->doBuild();
-        return $self;
+        $this->checkBuild();
+        return $this->steps;
     }
 
-    protected function doBuild()
+    protected function checkBuild(): void
     {
+        if ($this->built) {
+            return;
+        }
+        $this->doBuild();
+        $this->built = true;
     }
+
+    abstract protected function doBuild();
 }
 

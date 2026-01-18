@@ -2,6 +2,7 @@
 
 namespace ByTIC\Progress\Stepper;
 
+use ByTIC\Progress\Stepper\Behaviours\HasSteps;
 use ByTIC\Progress\Stepper\Renderer\DefaultRenderer;
 use ByTIC\Progress\Stepper\Steps\ProgressStep;
 use ByTIC\Progress\Stepper\Steps\StepCollection;
@@ -15,10 +16,7 @@ use ByTIC\Progress\Stepper\Steps\StepCollection;
  */
 class ProgressStepper
 {
-    /**
-     * @var StepCollection|ProgressStep[]
-     */
-    protected $steps;
+    use HasSteps;
 
     /**
      * @var array
@@ -46,8 +44,7 @@ class ProgressStepper
      */
     protected function __construct(array $steps, $current)
     {
-        $this->steps = new StepCollection();
-        $this->setSteps($steps);
+        $this->initSteps($steps);
         $this->current = $current;
     }
 
@@ -116,9 +113,9 @@ class ProgressStepper
     /**
      * @return mixed
      */
-    public function getCurrentStep()
+    public function getCurrentStep($default = null)
     {
-        return $this->steps[$this->current] ?? null;
+        return $this->getSteps()->get($this->current, $default);
     }
 
     public function getNextStep()
@@ -146,7 +143,7 @@ class ProgressStepper
      */
     public function getDoneSteps(): StepCollection
     {
-        return $this->steps->filter(
+        return $this->getSteps()->filter(
             function (ProgressStep $item) {
                 return $item->isDone();
             }
@@ -163,7 +160,7 @@ class ProgressStepper
             return $this;
         }
         $current = is_string($current) ? $current : (string)$current;
-        if (!isset($this->steps[$current])) {
+        if (!$this->getSteps()->has($current)) {
             throw new \InvalidArgumentException("Invalid step name [$current]");
         }
         $this->current = $current;
@@ -190,7 +187,7 @@ class ProgressStepper
     protected function setCurrentStepFlags()
     {
         $done = true;
-        foreach ($this->steps as $step) {
+        foreach ($this->getSteps() as $step) {
             if ($step->getName() == $this->current) {
                 $done = false;
                 $step->setActive(true);
@@ -200,5 +197,4 @@ class ProgressStepper
             $step->setDone($done);
         }
     }
-
 }
