@@ -23,6 +23,11 @@ trait HasUrl
         return $this->url;
     }
 
+    public function hasUrl(): bool
+    {
+        return !empty($this->getUrl());
+    }
+
     /**
      * @param null $url
      */

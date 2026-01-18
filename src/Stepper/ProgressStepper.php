@@ -19,6 +19,15 @@ class ProgressStepper
      * @var StepCollection|ProgressStep[]
      */
     protected $steps;
+
+    /**
+     * @var array
+     */
+    protected $stepsByPosition = [];
+
+    /**
+     * @var mixed
+     */
     protected $current = null;
 
     /**
@@ -65,6 +74,7 @@ class ProgressStepper
     public function setSteps($steps = [])
     {
         $this->steps->clear();
+        $this->stepsByPosition = [];
         foreach ($steps as $step) {
             $this->addStep($step);
         }
@@ -77,8 +87,12 @@ class ProgressStepper
      */
     public function addStep(ProgressStep $step): ProgressStepper
     {
-        $step->setPosition(count($this->steps) + 1);
-        $this->steps[$step->getName()] = $step;
+        $position = count($this->steps) + 1;
+        $step->setPosition($position);
+
+        $name = $step->getName();
+        $this->steps[$name] = $step;
+        $this->stepsByPosition[$position] = $name;
 
         return $this;
     }
@@ -104,7 +118,27 @@ class ProgressStepper
      */
     public function getCurrentStep()
     {
-        return $this->steps[$this->current];
+        return $this->steps[$this->current] ?? null;
+    }
+
+    public function getNextStep()
+    {
+        if ($this->current === null) {
+            return null;
+        }
+
+        $nextPosition = $this->getCurrentStep()->getPosition() + 1;
+        return $this->getStepByPosition($nextPosition);
+    }
+
+    /**
+     * @param int $position
+     * @return ProgressStep|null
+     */
+    public function getStepByPosition(int $position): ?ProgressStep
+    {
+        $name = $this->stepsByPosition[$position] ?? null;
+        return $name ? $this->steps[$name] : null;
     }
 
     /**
